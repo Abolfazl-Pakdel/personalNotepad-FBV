@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block title %}
+My Notes
+{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-lg-8">
+
+        <div class="glass p-4 mb-4">
+
+            <h2 class="mb-4">
+                📝 My Notes
+            </h2>
+
+            <form method="POST">
+
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-primary w-100">
+                    <i class="bi bi-plus-circle"></i>
+                    Add Note
+                </button>
+            </form>
+
+        </div>
+
+        {% for note in notes %}
+
+        <div class="glass card-note p-4 mb-3">
+
+            <div class="d-flex justify-content-between">
+
+                <h4>
+                    {{ note.title }}
+                </h4>
+
+                {% if note.is_pinned %}
+                    <span class="badge bg-warning text-dark">
+                        📌 Pinned
+                    </span>
+                {% endif %}
+
+            </div>
+
+            <hr>
+
+            <p>
+
+                {{ note.content|truncatewords:30 }}
+
+            </p>
+
+            <small class="text-secondary">
+
+                {{ note.created_at }}
+
+            </small>
+
+            <div class="mt-3">
+
+                <a href="{% url 'edit_note' note.id %}"
+                    class="btn btn-outline-warning btn-sm">
+
+                    <i class="bi bi-pencil"></i>
+                    Edit
+
+                </a>
+
+                <a href="{% url 'delete_note' note.id %}"
+                    class="btn btn-outline-danger btn-sm">
+
+                    <i class="bi bi-trash"></i>
+                    Delete
+
+                </a>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="glass p-5 text-center">
+
+            <h4>
+
+                😴 No Notes Yet
+
+            </h4>
+
+            <p>
+
+                Create your first note.
+
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}
