@@ -1,5 +1,8 @@
 from django.urls import path, include
 from .views import *
+
+app_name = 'notepad'
+
 urlpatterns = [
         path('', index, name='index'),
         path('delete/<int:note_id>', delete_note, name='delete_note'),
