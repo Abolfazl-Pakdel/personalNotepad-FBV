@@ -1,5 +1,5 @@
 from django import forms
-
+from .views import *
 from notepad.models import Note
 
 

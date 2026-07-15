@@ -4,7 +4,8 @@ from .views import *
 app_name = 'notepad'
 
 urlpatterns = [
-        path('', index, name='index'),
-        path('delete/<int:note_id>', delete_note, name='delete_note'),
-        path('edit/<int:note_id>', edit_note, name='edit_note'),
+        path('', NoteListView.as_view(), name='index'),
+        path('create/', NoteCreateView.as_view(), name='create'),
+        path('delete/<int:pk>', NoteDeleteView.as_view(), name='delete_note'),
+        path('edit/<int:pk>', NoteUpdateView.as_view(), name='edit_note'),
 ]
