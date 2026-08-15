@@ -7,4 +7,5 @@ urlpatterns = [
     path('login/', loginPage, name='login' ),
     path("logout/", logoutUser, name="logout"),
     path("register/", register_view, name="register"),
+    path('api/v1/', include('accounts.api.v1.urls')),
 ]
