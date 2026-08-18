@@ -1,14 +1,15 @@
-
-
 from rest_framework.test import APIClient
 import pytest
 from django.urls import reverse
 from datetime import datetime
 from django.contrib.auth.models import User
+
+
 @pytest.fixture
 def api_client():
     client = APIClient()
     return client
+
 
 @pytest.fixture
 def common_user():

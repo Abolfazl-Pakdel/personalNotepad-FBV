@@ -1,14 +1,15 @@
 from .views import *
 from django.urls import path, include
+
 # from rest_framework.routers import DefaultRouter
-app_name = 'api-v1'
+app_name = "api-v1"
 
 urlpatterns = [
-    path('note/', NoteList.as_view(), name='note-list'),
-    path('notedetail/<int:pk>/', NoteDetail.as_view(), name='note-detail'),
+    path("note/", NoteList.as_view(), name="note-list"),
+    path("notedetail/<int:pk>/", NoteDetail.as_view(), name="note-detail"),
 ]
 
-'''from django.urls import path, include
+"""from django.urls import path, include
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
 
@@ -35,4 +36,4 @@ router.register(r"users", UserViewSet)
 urlpatterns = [
     path("", include(router.urls)),
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
-]'''
+]"""

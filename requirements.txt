@@ -6,3 +6,5 @@ drf_spectacular
 djangorestframework-simplejwt
 pytest
 pytest-django
+flake8
+black
