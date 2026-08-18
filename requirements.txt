@@ -4,3 +4,5 @@ markdown       # Markdown support for the browsable API.
 django-filter  # Filtering support
 drf_spectacular
 djangorestframework-simplejwt
+pytest
+pytest-django
