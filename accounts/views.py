@@ -4,7 +4,7 @@
 # from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 # from django.contrib.auth.decorators import login_required
 # Create your views here.
-'''
+"""
 def loginPart(request):
     if not request.user.is_authenticated:
         if request.method == "POST":
@@ -21,37 +21,40 @@ def loginPart(request):
     else:
         return redirect('/')
 
-'''
+"""
+
 from django.http import HttpResponse
-from django.shortcuts import render , redirect, reverse
+from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+
 def loginPage(request):
-     if not request.user.is_authenticated:
+    if not request.user.is_authenticated:
         if request.method == "POST":
             form = AuthenticationForm(request=request, data=request.POST)
             if form.is_valid():
-                username = form.cleaned_data.get('username')
-                password = form.cleaned_data.get('password')
+                username = form.cleaned_data.get("username")
+                password = form.cleaned_data.get("password")
                 user = authenticate(request, username=username, password=password)
                 if user is not None:
                     login(request, user)
-                    return redirect('notepad:index')
+                    return redirect("notepad:index")
             else:
-                return render(request, 'accounts/login.html', {'form': form})
+                return render(request, "accounts/login.html", {"form": form})
         form = AuthenticationForm()
-        return render(request, 'accounts/login.html', {'form': form})
-     else:
-        return redirect('/')
+        return render(request, "accounts/login.html", {"form": form})
+    else:
+        return redirect("/")
+
 
 @login_required
 def logoutUser(request):
     logout(request)
-    return redirect('/')
+    return redirect("/")
 
 
 def register_view(request):
@@ -62,19 +65,15 @@ def register_view(request):
                 form.save()
                 username = form.cleaned_data.get("username")
                 password = form.cleaned_data.get("password1")
-                user = authenticate(
-                    request, username=username, password=password
-                )
+                user = authenticate(request, username=username, password=password)
                 if user is not None:
                     login(request, user)
-                return HttpResponse('accounts/login.html')
+                return HttpResponse("accounts/login.html")
             else:
-                return render(
-                    request, "accounts/register.html", {"form": form}
-                )
+                return render(request, "accounts/register.html", {"form": form})
 
         form = UserCreationForm()
         context = {"form": form}
         return render(request, "accounts/register.html", context)
     else:
-        return HttpResponse('registration failed')
+        return HttpResponse("registration failed")

@@ -16,7 +16,7 @@ My Notes
                 📝 My Notes
             </h2>
 
-            <form method="POST">
+            <form method="POST" action="{% url 'notepad:create' %}">
 
                 {% csrf_token %}
                 {{ form.as_p }}

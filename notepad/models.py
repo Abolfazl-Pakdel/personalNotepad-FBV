@@ -3,6 +3,7 @@ from django.db import models
 
 # Create your models here.
 
+
 class Note(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
@@ -15,4 +16,4 @@ class Note(models.Model):
         return self.title
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ["-created_at"]
